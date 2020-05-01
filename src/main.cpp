@@ -14,13 +14,14 @@ void autonomous(void) {}
 void usercontrol(void) {
   while (1) {
     //Variables
-    double LeftStickAxis = Controller1.Axis3.value();
-    double RightStickAxis = Controller1.Axis2.value();
+    double LeftStickAxis = Controller1.Axis3.value(); //Controller's Axis 3 Value (+1 to -1)
+    double RightStickAxis = Controller1.Axis2.value(); //Controller's Axis 2 Value (+1 to -1)
     //Variables-End
 
     //Drivetrain - TANK DRIVE
-    LeftMotor.spin(vex::directionType::fwd, LeftStickAxis, vex::velocityUnits::pct);
-    RightMotor.spin(vex::directionType::fwd, RightStickAxis, vex::velocityUnits::pct);
+    LeftMotor.spin(vex::directionType::fwd, LeftStickAxis, vex::velocityUnits::pct); //Left Motor's Spin Situation (diretionType, velocity, velocity lib)
+    RightMotor.spin(vex::directionType::fwd, RightStickAxis, vex::velocityUnits::pct); //Right Motor's Spin Situation (diretionType, velocity, velocity lib)
+    //Drivetrain - END
     wait(20, msec);
   }
 }

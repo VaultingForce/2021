@@ -8,7 +8,8 @@
 /*----------------------------------------------------------------------------*/
 #include "vex.h"
 using namespace vex;
-competition Competition;
+vex::competition Competition;
+vex::brain Brain;
 void pre_auton(void) {vexcodeInit();}
 void autonomous(void) {}
 void usercontrol(void) {
@@ -22,6 +23,18 @@ void usercontrol(void) {
     LeftMotor.spin(vex::directionType::fwd, LeftStickAxis, vex::velocityUnits::pct); //Left Motor's Spin Situation (diretionType, velocity, velocity lib)
     RightMotor.spin(vex::directionType::fwd, RightStickAxis, vex::velocityUnits::pct); //Right Motor's Spin Situation (diretionType, velocity, velocity lib)
     //Drivetrain - END
+    
+    //Brain Output - VALUES
+    Brain.Screen.clearLine(0, color::black); //Clear Screen's Line 0
+    Brain.Screen.clearLine(1, color::black); //Clear Screen's Line 1
+    Brain.Screen.clearLine(2, color::black); //Clear Screen's Line 2
+    Brain.Screen.setCursor(1,1); //Set Cursor to 1,1
+    Brain.Screen.print("Left Motor : %f velocity", LeftStickAxis); //Write Left Motor's Spins Values to the Brain's Screen
+    Brain.Screen.setCursor(2,1); //Set Cursor to 2,1
+    Brain.Screen.print("Right Motor : %f velocity", RightStickAxis); //Write Right Motor's Spin Values to the Brain's Screen
+    Brain.Screen.render(); //push data to the LCD all at once to prevent image flickering
+    //Brain Output-End
+    }
     wait(20, msec);
   }
 }
